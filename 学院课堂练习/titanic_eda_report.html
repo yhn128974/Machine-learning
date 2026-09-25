@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>泰坦尼克号数据探索性分析报告 (EDA)</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 30px; background-color: #f8fafc; color: #1e293b; }
+        h1, h2, h3 { color: #0f172a; }
+        .header { background: linear-gradient(135deg, #1e3a8a, #3b82f6); color: white; padding: 25px 30px; border-radius: 12px; margin-bottom: 25px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+        .header h1 { color: white; margin: 0 0 10px 0; }
+        .card { background: white; padding: 20px 25px; border-radius: 10px; margin-bottom: 20px; box-shadow: 0 1px 3px 0 rgba(0,0,0,0.1); }
+        table { border-collapse: collapse; width: 100%; margin: 15px 0; font-size: 14px; }
+        th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid #e2e8f0; }
+        th { background-color: #f1f5f9; color: #475569; font-weight: 600; }
+        tr:hover { background-color: #f8fafc; }
+        .tag { display: inline-block; padding: 3px 8px; border-radius: 6px; font-size: 12px; font-weight: 600; background: #e0f2fe; color: #0369a1; }
+        .alert { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 12px 16px; border-radius: 4px; color: #92400e; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📊 泰坦尼克号 (Titanic) 数据集 EDA 探索性分析报告</h1>
+        <p>自动生成时间: 实时分析 | 总样本量: <strong>891</strong> 行 | 总特征数: <strong>12</strong> 列</p>
+    </div>
+
+    <div class="card">
+        <h2>📌 1. 数据集基础概览</h2>
+        <p>包含乘客基本信息、舱位、票价、亲属随行情况及生存标签（Survived）。</p>
+        <table class="dataframe table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>列名 (Column)</th>
+      <th>数据类型 (Dtype)</th>
+      <th>缺失数量 (Missing)</th>
+      <th>缺失占比 (%)</th>
+      <th>唯一值数量 (Unique)</th>
+      <th>样本示例 (Sample)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>PassengerId</td>
+      <td>int64</td>
+      <td>0</td>
+      <td>0.0%</td>
+      <td>891</td>
+      <td>[1, 2, 3]</td>
+    </tr>
+    <tr>
+      <td>Survived</td>
+      <td>int64</td>
+      <td>0</td>
+      <td>0.0%</td>
+      <td>2</td>
+      <td>[0, 1, 1]</td>
+    </tr>
+    <tr>
+      <td>Pclass</td>
+      <td>int64</td>
+      <td>0</td>
+      <td>0.0%</td>
+      <td>3</td>
+      <td>[3, 1, 3]</td>
+    </tr>
+    <tr>
+      <td>Name</td>
+      <td>object</td>
+      <td>0</td>
+      <td>0.0%</td>
+      <td>891</td>
+      <td>['Braund, Mr. Owen Harris', 'Cumings, Mrs. John Bradley (Florence Briggs Thayer)', 'Heikkinen, Miss. Laina']</td>
+    </tr>
+    <tr>
+      <td>Sex</td>
+      <td>object</td>
+      <td>0</td>
+      <td>0.0%</td>
+      <td>2</td>
+      <td>['male', 'female', 'female']</td>
+    </tr>
+    <tr>
+      <td>Age</td>
+      <td>float64</td>
+      <td>177</td>
+      <td>19.87%</td>
+      <td>88</td>
+      <td>[22.0, 38.0, 26.0]</td>
+    </tr>
+    <tr>
+      <td>SibSp</td>
+      <td>int64</td>
+      <td>0</td>
+      <td>0.0%</td>
+      <td>7</td>
+      <td>[1, 1, 0]</td>
+    </tr>
+    <tr>
+      <td>Parch</td>
+      <td>int64</td>
+      <td>0</td>
+      <td>0.0%</td>
+      <td>7</td>
+      <td>[0, 0, 0]</td>
+    </tr>
+    <tr>
+      <td>Ticket</td>
+      <td>object</td>
+      <td>0</td>
+      <td>0.0%</td>
+      <td>681</td>
+      <td>['A/5 21171', 'PC 17599', 'STON/O2. 3101282']</td>
+    </tr>
+    <tr>
+      <td>Fare</td>
+      <td>float64</td>
+      <td>0</td>
+      <td>0.0%</td>
+      <td>248</td>
+      <td>[7.25, 71.2833, 7.925]</td>
+    </tr>
+    <tr>
+      <td>Cabin</td>
+      <td>object</td>
+      <td>687</td>
+      <td>77.1%</td>
+      <td>147</td>
+      <td>['C85', 'C123', 'E46']</td>
+    </tr>
+    <tr>
+      <td>Embarked</td>
+      <td>object</td>
+      <td>2</td>
+      <td>0.22%</td>
+      <td>3</td>
+      <td>['S', 'C', 'S']</td>
+    </tr>
+  </tbody>
+</table>
+    </div>
+
+    <div class="card">
+        <h2>📈 2. 数值型特征分布统计</h2>
+        <table class="dataframe table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>数值特征</th>
+      <th>count</th>
+      <th>mean</th>
+      <th>std</th>
+      <th>min</th>
+      <th>25%</th>
+      <th>50%</th>
+      <th>75%</th>
+      <th>max</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>PassengerId</td>
+      <td>891.0</td>
+      <td>446.000000</td>
+      <td>257.353842</td>
+      <td>1.00</td>
+      <td>223.5000</td>
+      <td>446.0000</td>
+      <td>668.5</td>
+      <td>891.0000</td>
+    </tr>
+    <tr>
+      <td>Survived</td>
+      <td>891.0</td>
+      <td>0.383838</td>
+      <td>0.486592</td>
+      <td>0.00</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>1.0</td>
+      <td>1.0000</td>
+    </tr>
+    <tr>
+      <td>Pclass</td>
+      <td>891.0</td>
+      <td>2.308642</td>
+      <td>0.836071</td>
+      <td>1.00</td>
+      <td>2.0000</td>
+      <td>3.0000</td>
+      <td>3.0</td>
+      <td>3.0000</td>
+    </tr>
+    <tr>
+      <td>Age</td>
+      <td>714.0</td>
+      <td>29.699118</td>
+      <td>14.526497</td>
+      <td>0.42</td>
+      <td>20.1250</td>
+      <td>28.0000</td>
+      <td>38.0</td>
+      <td>80.0000</td>
+    </tr>
+    <tr>
+      <td>SibSp</td>
+      <td>891.0</td>
+      <td>0.523008</td>
+      <td>1.102743</td>
+      <td>0.00</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>1.0</td>
+      <td>8.0000</td>
+    </tr>
+    <tr>
+      <td>Parch</td>
+      <td>891.0</td>
+      <td>0.381594</td>
+      <td>0.806057</td>
+      <td>0.00</td>
+      <td>0.0000</td>
+      <td>0.0000</td>
+      <td>0.0</td>
+      <td>6.0000</td>
+    </tr>
+    <tr>
+      <td>Fare</td>
+      <td>891.0</td>
+      <td>32.204208</td>
+      <td>49.693429</td>
+      <td>0.00</td>
+      <td>7.9104</td>
+      <td>14.4542</td>
+      <td>31.0</td>
+      <td>512.3292</td>
+    </tr>
+  </tbody>
+</table>
+    </div>
+
+    <div class="card">
+        <h2>💡 3. 核心发现与建模建议</h2>
+        <ul>
+            <li><strong>缺失值注意</strong>: <code>Age</code> (约 19.87% 缺失)、<code>Cabin</code> (约 77.10% 缺失)、<code>Embarked</code> (2 处缺失)。</li>
+            <li><strong>生还分布</strong>: 幸存率约为 38.38%，死亡率约为 61.62%。</li>
+            <li><strong>提示</strong>: 若需更丰富的交互式热力图和相关性分析，可在终端运行 <code>pip install ydata-profiling</code> 安装官方库后再次执行本脚本。</li>
+        </ul>
+    </div>
+</body>
+</html>
