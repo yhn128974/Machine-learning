@@ -10,14 +10,14 @@ import os
 def dm04_titanic():
     # 1 读数据到内存
     data_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'data', 'titanic.csv')
-    titanic_df = pd.read_csv(data_path)
-    # titanic_df.head()        # 查看前5条数据
-    # titanic_df.info()         # 查看特性信息
+    data = pd.read_csv(data_path)
+    # data.head()        # 查看前5条数据
+    # data.info()         # 查看特性信息
 
     # 2 数据基本处理
     # 2-1 确定x y
-    x = titanic_df[['Pclass', 'Age', 'Sex']]
-    y = titanic_df['Survived']
+    x = data[['Pclass', 'Age', 'Sex']]
+    y = data['Survived']
 
     # 2-2 缺失值处理
     x['Age'].fillna(x['Age'].mean(), inplace=True)
